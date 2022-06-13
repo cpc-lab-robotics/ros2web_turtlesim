@@ -23,4 +23,4 @@ ros2 web server
 
 After starting up the server, try accessing this URL.
 
-http://localhost:8080/ui/turtlesim
+http://localhost:8080/ros2web/turtlesim
