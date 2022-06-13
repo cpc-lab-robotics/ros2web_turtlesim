@@ -1,0 +1,53 @@
+page:
+  layout:
+    Cards:
+  widgets:
+    - Stack:
+        card_name: launch
+        widgets:
+          - Button:
+              id: launch_button
+              label: ${launch_button_label}
+    - ParamConfig:
+        id: color_param
+        card_name: turtlesim color
+        params: ${params}
+    - Joystick:
+        id: joystick
+        card_name: Joystick
+    - Stack:
+        card_name: service
+        direction: row
+        widgets:
+          - Button:
+              id: clear_button
+              label: clear
+              disable: ${disable}
+          - Button:
+              id: reset_button
+              label: rest
+              disable: ${disable}
+    - Plot:
+        card_name: Plot
+        layout:
+          width: 250
+          height: 250
+          xaxis:
+            range: [0, 10]
+          yaxis:
+            range: [0, 10]
+          margin:
+            l: 50
+            r: 50
+            b: 50
+            t: 50
+        config:
+          staticPlot: True
+        data_adaptor:
+          - Data:
+              type: scatter
+              x: ${x}
+              y: ${y}
+              marker:
+                color: '#23324F'
+                size: 10
