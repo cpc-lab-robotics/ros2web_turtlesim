@@ -11,8 +11,9 @@ https://github.com/cpc-lab-robotics/ros2web
 ```zsh
 cd ros2_ws/src
 git clone https://github.com/cpc-lab-robotics/ros2web_turtlesim
+cd ..
 colcon build --symlink-install
-. ./install/local_setup.zsh
+. ./install/local_setup.bash
 ```
 
 # Usage
