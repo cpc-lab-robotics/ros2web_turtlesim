@@ -1,37 +1,50 @@
+hot_reload:
+  patterns: ["*.py", "*.yml"]
 page:
-  layout:
-    Cards:
+  style: Grid
   widgets:
-    - Stack:
-        card_name: launch
-        widgets:
-          - Button:
-              id: launch_button
-              label: ${launch_button_label}
-    - ParamConfig:
-        id: color_param
-        card_name: turtlesim color
+    - name: std.Button
+      id: launch_button
+      grid:
+        elevation: 0
+        x: 0
+        y: 0
+        w: 1
+        h: 3
+      props:
+        label: ${launch_button_label}
+        justify_content: center
+        # align_items: center
+        spacing: 1
+    - name: std.Button
+      id: service_button
+      grid:
+        elevation: 0
+        x: 0
+        y: 3
+        w: 1
+        h: 3
+      props:
+        labels:
+          - rest
+          - clear
+        spacing: 1
+    - name: joystick.Joystick
+      id: joystick
+    - name: param.Config
+      id: param_config
+      props:
         params: ${params}
-    - Joystick:
-        id: joystick
-        card_name: Joystick
-    - Stack:
-        card_name: service
-        direction: row
-        widgets:
-          - Button:
-              id: clear_button
-              label: clear
-              disable: ${disable}
-          - Button:
-              id: reset_button
-              label: rest
-              disable: ${disable}
-    - Plot:
-        card_name: Plot
+    - name: plot.Plot
+      props:
+        data:
+          - type: scatter
+            x: ${x}
+            y: ${y}
+            marker:
+              color: '#23324F'
+              size: 10
         layout:
-          width: 250
-          height: 250
           xaxis:
             range: [0, 10]
           yaxis:
@@ -43,11 +56,3 @@ page:
             t: 50
         config:
           staticPlot: True
-        data_adaptor:
-          - Data:
-              type: scatter
-              x: ${x}
-              y: ${y}
-              marker:
-                color: '#23324F'
-                size: 10

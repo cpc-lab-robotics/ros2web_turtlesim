@@ -4,7 +4,7 @@ package_name = 'ros2web_turtlesim'
 
 setup(
     name=package_name,
-    version='0.0.0',
+    version='0.0.2',
     packages=[package_name],
     data_files=[
         ('share/ament_index/resource_index/packages',
@@ -19,7 +19,7 @@ setup(
     license='TODO: License declaration',
     entry_points={
         'ros2web.package': [
-            'turtlesim = ros2web_turtlesim:ROS2WebTurtlesim'
+            'turtlesim = ros2web_turtlesim.package:ROS2WebPackage'
         ],
     },
     package_data={
