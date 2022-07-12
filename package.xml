@@ -7,6 +7,8 @@
   <maintainer email="tygoto@me.com">tygoto</maintainer>
   <license>TODO: License declaration</license>
   <depend>ros2web</depend>
+  <depend>ros2web_joystick</depend>
+  <depend>ros2web_plot</depend>
   <export>
     <build_type>ament_python</build_type>
   </export>

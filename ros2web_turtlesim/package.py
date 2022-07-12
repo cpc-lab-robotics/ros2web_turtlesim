@@ -3,7 +3,7 @@ from typing import Dict
 from ros2web.api import Plugin
 from ros2web.api import RouteTableDef, Request
 from ros2web.api import WidgetEvent
-from ros2web.api import ProcessEvent
+from ros2web.api.ros2 import ProcessEvent
 from ros2web.api.models import Param
 
 import launch.logging
@@ -58,9 +58,6 @@ class ROS2WebPackage(Plugin):
         self._reset_service = self.ros_node.create_client(Empty, 'reset')
 
     async def on_shutdown(self):
-        if self.__process:
-            self.__process.shutdown()
-
         self.ros_node.destroy_publisher(self._publisher)
         self.ros_node.destroy_subscription(self._subscription)
         self.ros_node.destroy_client(self._clear_service)
@@ -72,12 +69,13 @@ class ROS2WebPackage(Plugin):
             try:
                 self.__process = await self.ros2.run(
                     package="turtlesim",
-                    executable="turtlesim_node",
-                    on_start=self.on_start,
-                    on_exit=self.on_exit,
-                    # on_stdout=self.on_stdout,
-                    # on_stderr=self.on_stderr,
+                    executable="turtlesim_node"
                 )
+                self.__process.on_start = self.on_start
+                self.__process.on_exit = self.on_exit
+                self.__process.on_stdout = self.on_stdout
+                self.__process.on_stderr = self.on_stderr
+                
             except Exception as e:
                 self.__logger.error(e)
 
